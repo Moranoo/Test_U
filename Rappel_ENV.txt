@@ -1,0 +1,16 @@
+Pour créer un env 
+python -m venv nom_de_l_environnement
+
+on lance ensuite 
+nom_de_l_environnement\Scripts\activate
+
+
+si on a pas de requirement.txt on le freeze 
+pip freeze > requirements.txt
+
+
+et si on a un requirment.txt 
+pip install -r requirements.txt
+
+
+je peux aussi installer dans l'nom_de_l_environnement les flask et autres et freeze le tout
