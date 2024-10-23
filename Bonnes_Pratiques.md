@@ -39,3 +39,38 @@ def test_lire_fichier():
         assert result == "données fictives"
 
 ```
+
+
+## 3. CI/CD avec GitHub Actions ou Travis CI
+Intégrer des tests automatiques dans un pipeline d'intégration continue (CI) est essentiel pour garantir la qualité du code. Utiliser des outils comme GitHub Actions, Travis CI ou Jenkins peut automatiser l'exécution des tests chaque fois que tu pousses du code dans ton dépôt.
+
+Exemple d'intégration GitHub Actions (fichier .github/workflows/python-app.yml) :
+
+yaml
+name: Python package
+
+on: [push]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: [3.6, 3.7, 3.8, 3.9]
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up Python
+      uses: actions/setup-python@v2
+      with:
+        python-version: ${{ matrix.python-version }}
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install pytest
+    - name: Run tests
+      run: |
+        pytest
+
+        
+Cela exécute tes tests sur plusieurs versions de Python à chaque push sur ton dépôt.
