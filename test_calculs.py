@@ -43,4 +43,3 @@ def test_charger_donnees():
     with mock.patch('geopandas.read_file', return_value=donnees_moquees):
         resultat = charger_shapefile("fichier_fictif.shp")
         assert resultat.equals(donnees_moquees)
-
