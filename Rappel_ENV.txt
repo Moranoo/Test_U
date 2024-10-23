@@ -14,3 +14,66 @@ pip install -r requirements.txt
 
 
 je peux aussi installer dans l'nom_de_l_environnement les flask et autres et freeze le tout
+
+
+Pour supprimer un dossier ou autres du git depuis vs code
+
+git rm --cached -r non du fichier 
+
+git commit -m "Supprime le dossier le nom du fichier de l'index"
+git push
+
+
+
+RAPPEL
+pytest test_calculs.py -v -s --tb=short --showlocals
+
+Explication de ce que cette commande fera :
+-v : Affiche chaque test exécuté avec son nom et son statut (succès ou échec).
+-s : Montre toute sortie imprimée dans tes tests (comme les appels à print ou les sorties capturées).
+--tb=short : Affiche un traceback plus concis en cas d'échec de test, ce qui te permet de voir uniquement les informations importantes.
+--showlocals : Si un test échoue, tu verras également les valeurs des variables locales à l'endroit où l'échec s'est produit, ce qui aide à mieux comprendre l'origine de l'erreur.
+
+il faut préalablememnt installer pip install pytest-cov
+
+
+
+EXEMPLE:
+
+Structure d'un projet typique :
+
+Imaginons que ton projet a la structure suivante :
+
+projet/
+│
+├── src/                 # Le dossier qui contient plusieurs fichiers Python
+│   ├── __init__.py      # Ce fichier indique que src est un module (package)
+│   ├── module1.py       # Fichier Python à tester
+│   ├── module2.py       # Autre fichier Python à tester
+│   └── module3.py       # Etc.
+│
+├── tests/
+│   ├── test_module1.py  # Tests pour module1
+│   ├── test_module2.py  # Tests pour module2
+│   └── test_module3.py  # Tests pour module3
+│
+└── ...
+
+FICHIER __INIT__.py
+
+Le fichier __init__.py est utilisé pour indiquer à Python qu'un dossier doit être traité comme un package. Il est généralement placé dans les dossiers qui contiennent d'autres modules Python pour les regrouper sous un même package. Cela permet à Python de savoir que le dossier peut être importé et utilisé comme un module.
+
+src/ : C'est ton module contenant plusieurs fichiers Python (comme module1.py, module2.py, etc.).
+tests/ : C'est le dossier qui contient les tests unitaires pour les fichiers dans src/.
+__init__.py : Le fichier vide qui transforme src en module Python.
+
+
+Mesurer la couverture des tests pour tout le dossier src/
+Pour mesurer la couverture de tous les fichiers dans le dossier src/, tu peux exécuter la commande suivante :
+
+pytest --cov=src tests/
+
+
+Explication :
+--cov=src : Mesure la couverture pour tout le dossier src, qui contient plusieurs fichiers Python.
+tests/ : Indique que tu veux exécuter tous les tests qui se trouvent dans le dossier tests/.

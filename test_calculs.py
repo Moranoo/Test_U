@@ -1,6 +1,8 @@
 from calculs import additionner;
+import numpy as np;
+import geopandas as gpd
 
-from calculs import lire_csv;
+from calculs import lire_csv, charger_donnees, charger_shapefile;
 
 import io; # io est pour les entrées/sorties de données provenant de fichiers ici le fichier csv
 
@@ -19,3 +21,26 @@ def test_lire_csv():
 
 def test_additionner():
     assert additionner(2,2) == 4
+
+
+# Moquer des fichiers .npy
+def test_charger_donnees():
+     # Simuler un tableau NumPy
+    donnees_moquees = np.array([[1, 2, 3], [4, 5, 6]])
+
+    # Moquer np.load pour qu'il retourne le tableau simulé
+    with mock.patch('numpy.load', return_value=donnees_moquees):
+        resultat = charger_donnees("fichier_fictif.npy")
+
+# Moquer des fichdef test_charger_shapefile():
+    # Simuler un GeoDataFrame
+    donnees_moquees = gpd.GeoDataFrame({
+        'nom': ['PointA', 'PointB'],
+        'geometry': [None, None]  # Normalement, il y aurait de la géométrie ici
+    })
+
+    # Moquer gpd.read_file pour qu'il retourne le GeoDataFrame simulé
+    with mock.patch('geopandas.read_file', return_value=donnees_moquees):
+        resultat = charger_shapefile("fichier_fictif.shp")
+        assert resultat.equals(donnees_moquees)
+
